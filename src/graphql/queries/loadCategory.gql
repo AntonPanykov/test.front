@@ -1,0 +1,16 @@
+#import '../fragments/category.gql'
+
+query loadCategories(
+  $id: ID
+  $parentPath: String
+  $title: String
+) {
+    loadCategories(
+       id: $id
+       parentPath: $parentPath
+       title: $title
+    ) {
+      ...Category
+    }
+
+}

@@ -1,0 +1,7 @@
+fragment Category on Category {
+    id
+    title
+    is_public
+    slug
+    path
+}
