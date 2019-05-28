@@ -4,13 +4,21 @@ const routes = [
     path: '/',
     component: () => import('layouts/MyLayout.vue'),
     beforeEnter: (to, from, next) => {
-      store.dispatch('category/loadCategories').finally(() => {
+      console.log(to)
+      store.dispatch('category/loadCategories').then(() => {
+        if (to.name === 'category') store.commit('category/setCurrentCategory', store.getters['category/getCategoryBySlug'](to.params.slug))
+      }).finally(() => {
         next()
       })
     },
     children: [
       {
         path: '',
+        component: () => import('pages/Index.vue')
+      },
+      {
+        path: 'category/:slug',
+        name: 'category',
         component: () => import('pages/Index.vue')
       }
     ]

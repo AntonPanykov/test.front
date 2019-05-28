@@ -1,6 +1,7 @@
 <template>
-  <q-page class="flex flex-center">
-    <p class="test">1123213</p>
+  <q-page padding>
+    <v-breadcrumbs/>
+    <v-product-list/>
   </q-page>
 </template>
 
@@ -8,13 +9,10 @@
 </style>
 
 <script>
+import VProductList from '../components/Product/VProductList'
+import VBreadcrumbs from '../components/VBreadcrumbs'
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  components: { VBreadcrumbs, VProductList }
 }
 </script>
-
-<style lang="scss">
-  .test{
-    color: yellow;
-  }
-</style>

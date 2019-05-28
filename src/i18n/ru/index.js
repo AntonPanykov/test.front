@@ -2,16 +2,7 @@ export default {
   messages: {},
   errors: {},
   buttons: {
-    submit: 'Submit',
-    logout: 'Logout',
-    cancel: 'Cancel',
-    login: 'Login',
-    register: 'Register',
-    go_back: 'Go back',
-    send: 'Send',
-    close: 'Close',
-    next: 'Next',
-    previous: 'Previous'
+    load: 'Загрузить'
   },
   headers: {
     title: 'Тест',

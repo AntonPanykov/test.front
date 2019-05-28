@@ -1,0 +1,8 @@
+fragment Product on Product {
+    id
+    title
+    description
+    img
+    is_img_local
+    category_id
+}

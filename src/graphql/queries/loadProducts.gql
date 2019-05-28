@@ -1,0 +1,23 @@
+#import '../fragments/product.gql'
+
+query loadProducts(
+  $id: ID
+  $categoryId: ID
+  $page: Int
+) {
+    loadProducts(
+       id: $id
+       categoryId: $categoryId
+       page: $page
+    ) {
+      data {
+       ...Product
+       category {
+        id
+        title
+       }
+      }
+      total
+      per_page
+    }
+}

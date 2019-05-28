@@ -8,6 +8,7 @@
       label-key="title"
       :selected.sync="selected"
       default-expand-all
+      @update:selected="changeCategory"
     />
   </div>
 </template>
@@ -27,15 +28,20 @@ export default {
   },
   computed: {
     ...mapGetters('category', [
-      'getCategories'
+      'getCategories',
+      'getCategoryById',
+      'getCurrentCategory'
     ])
   },
   mounted () {
-    this.createTree()
+    this.createTree().then(() => {
+      console.log()
+      this.selected = this.getCurrentCategory ? this.getCurrentCategory.id : ''
+    })
   },
   methods: {
     createTree () {
-      this.items = Object.assign(this.getCategories)
+      this.items = JSON.parse(JSON.stringify(this.getCategories))
       return new Promise(resolve => {
         let roots = this.getRoots()
         let activeIds = this.getActiveIds()
@@ -77,6 +83,11 @@ export default {
       item.children.map(item => {
         this.getChildren(item, items, activeIds)
       })
+    },
+    changeCategory (select) {
+      let category = this.getCategoryById(select)
+      this.$store.commit('category/setCurrentCategory', category)
+      if (category) this.$router.push({ name: 'category', params: { slug: category.title } })
     }
   }
 }
